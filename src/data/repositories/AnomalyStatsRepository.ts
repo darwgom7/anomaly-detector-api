@@ -11,14 +11,15 @@ export const getOrCreateStats = async () => {
 
 export const updateStats = async (hasAnomaly: boolean) => {
   const stats = await getOrCreateStats();
-  
+
   if (hasAnomaly) {
     stats.count_anomalies += 1;
   } else {
     stats.count_no_anomalies += 1;
   }
-  
-  stats.ratio = stats.count_anomalies / (stats.count_anomalies + stats.count_no_anomalies);
-  
+
+  stats.ratio =
+    stats.count_anomalies / (stats.count_anomalies + stats.count_no_anomalies);
+
   await stats.save();
 };

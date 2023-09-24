@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import config from './dbConfig';
+import mongoose from "mongoose";
+import config from "./dbConfig";
 
 const connectDB = async () => {
   try {
@@ -7,9 +7,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     } as any);
-    console.log('Successfully connected to MongoDB');
+    console.log("Successfully connected to MongoDB");
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
+    console.error("Error connecting to MongoDB:", error);
     process.exit(1);
   }
 };
