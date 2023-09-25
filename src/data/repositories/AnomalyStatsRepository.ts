@@ -23,3 +23,8 @@ export const updateStats = async (hasAnomaly: boolean) => {
 
   await stats.save();
 };
+export const resetAnomalyStats = async () => {
+  await AnomalyStats.deleteMany({});
+  const stats = new AnomalyStats();
+  await stats.save();
+};

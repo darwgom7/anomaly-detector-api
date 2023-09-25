@@ -3,8 +3,13 @@ import { hasAnomaly } from "../../core/business/AnomalyDetection";
 import {
   saveAnomalyRecord,
   getStats,
+  resetAnomalyRecords,
 } from "../../data/repositories/AnomalyRecordRepository";
-import { updateStats } from "../../data/repositories/AnomalyStatsRepository";
+
+import {
+  updateStats,
+  resetAnomalyStats,
+} from "../../data/repositories/AnomalyStatsRepository";
 
 export const validateAnomaly = async (req: Request, res: Response) => {
   const dna = req.body.dna;
@@ -20,11 +25,19 @@ export const validateAnomaly = async (req: Request, res: Response) => {
 
 export const stats = async (_: Request, res: Response) => {
   const { count_anomalies, count_no_anomalies } = await getStats();
-  const ratio = count_anomalies / (count_anomalies + count_no_anomalies);
-
+  let ratio = count_anomalies / (count_anomalies + count_no_anomalies);
+  ratio = Number(ratio.toFixed(1));
+  
   return res.status(200).json({
     count_anomalies,
     count_no_anomalies,
     ratio,
   });
+};
+
+export const reset = async (_: Request, res: Response) => {
+  await resetAnomalyRecords();
+  await resetAnomalyStats();
+
+  return res.status(200).json({ message: "Data reset successfully" });
 };

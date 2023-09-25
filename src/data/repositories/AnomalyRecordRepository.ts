@@ -17,3 +17,8 @@ export const getStats = async () => {
   });
   return { count_anomalies, count_no_anomalies };
 };
+
+export const resetAnomalyRecords = async () => {
+  await AnomalyRecord.deleteMany({});
+};
+

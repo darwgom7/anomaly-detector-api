@@ -36,5 +36,3 @@ export const hasAnomaly = (dna: string[][]): boolean => {
 
   return false;
 };
-
-
