@@ -7,4 +7,8 @@ router.post("/validate-anomaly", AnomalyController.validateAnomaly);
 router.get("/stats", AnomalyController.stats);
 router.post("/reset", AnomalyController.reset);
 
+router.get("/", (req, res) => {
+  res.send(`<p>¡Hi, welcome to anomaly detector api! 👋</p>`);
+});
+
 export default router;
