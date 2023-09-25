@@ -1,14 +1,31 @@
+// Importando los validadores
+import { BasicDnaValidator } from "../validators/BasicDnaValidator";
+import { AdvancedDnaValidator } from "../validators/AdvancedDnaValidator";
+
 export const hasAnomaly = (dna: string[][]): boolean => {
-  const MIN_SEQ_LENGTH = 3; 
-  
+  const basicValidator = new BasicDnaValidator();
+  const advancedValidator = new AdvancedDnaValidator(basicValidator);
+  if (!advancedValidator.validate(dna)) {
+    return false; 
+  }
+
+  const MIN_SEQ_LENGTH = 3;
   const rows = dna.length;
-  if (rows === 0) return false;
-  
+
   const cols = dna[0].length;
 
-  const directionToString = (row: number, col: number, dx: number, dy: number): string => {
+  const directionToString = (
+    row: number,
+    col: number,
+    dx: number,
+    dy: number
+  ): string => {
     let str = "";
-    for (let x = row, y = col; x >= 0 && x < rows && y >= 0 && y < cols; x += dx, y += dy) {
+    for (
+      let x = row, y = col;
+      x >= 0 && x < rows && y >= 0 && y < cols;
+      x += dx, y += dy
+    ) {
       str += dna[x][y];
     }
     return str;
@@ -20,7 +37,7 @@ export const hasAnomaly = (dna: string[][]): boolean => {
     [0, 1],
     [1, 0],
     [1, 1],
-    [-1, 1]
+    [-1, 1],
   ];
 
   for (let row = 0; row < rows; row++) {
