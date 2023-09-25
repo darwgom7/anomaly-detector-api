@@ -113,6 +113,7 @@
   "include": [
     "src/**/*.ts",
     "tests/**/*.ts",
-    "tests/**/*.test.ts"
+    "tests/**/*.test.ts",
+    "index.ts"
   ]
 }
