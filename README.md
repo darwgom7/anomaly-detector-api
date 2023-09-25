@@ -2,6 +2,9 @@
 
 An API to detect anomalies in a given bi-directional DNA matrix. An anomaly is identified if three or more identical letters appear consecutively in a row, column, or diagonal.
 
+# Demo
+https://anomaly-detector-api.onrender.com/
+
 ## Table of Contents
 
 1. [Installation](#installation)
